@@ -1,4 +1,4 @@
-package GeotechnicalSubroutines
+package vectors
 
 import (
 	"errors"

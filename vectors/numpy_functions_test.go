@@ -1,4 +1,4 @@
-package GeotechnicalSubroutines
+package vectors
 
 import (
 	"fmt"
@@ -16,7 +16,6 @@ func TestContains(t *testing.T) {
 	testElemFalseInt := 10
 	testElemTrueFloat := 1.1
 	testElemFalseFloat := 1.11
-
 	if Contains(testSliceInt, testElemTrueInt) != true {
 		t.Errorf("Contains(%v, %v) = %v, want %v", testSliceInt, testElemTrueInt, Contains(testSliceInt, testElemTrueInt), true)
 	}
