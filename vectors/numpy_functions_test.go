@@ -32,7 +32,7 @@ func TestContains(t *testing.T) {
 }
 
 func TestUnique(t *testing.T) {
-	expectedSlice := []int{1, 2, 3, 4, 5}
+	expectedSlice := []float64{1, 2, 3, 4, 5}
 	outputSlice := Unique(testSliceInt)
 
 	if reflect.DeepEqual(expectedSlice, outputSlice) != true {
@@ -67,7 +67,7 @@ func TestIncrementBy(t *testing.T) {
 }
 
 func TestPowBy(t *testing.T) {
-	expected := []int{1, 4, 9, 16, 25, 9}
+	expected := []float64{1, 4, 9, 16, 25, 9}
 	output := PowBy(testSliceInt, 2)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("PowBy(%v,%d) = %v, want %v", testSliceInt, 2, output, expected)
@@ -100,7 +100,7 @@ func TestRound(t *testing.T) {
 }
 
 func TestMax(t *testing.T) {
-	expectedMax := 5
+	expectedMax := 5.0
 	expectedArgMax := 4
 	outputMax, argMax := Max(testSliceInt)
 	if outputMax != expectedMax && argMax != expectedArgMax {
@@ -118,7 +118,7 @@ func TestMin(t *testing.T) {
 }
 
 func TestMean(t *testing.T) {
-	expected := 3
+	expected := 3.0
 	output := Mean(testSliceInt)
 	if output != expected {
 		t.Errorf("Mean(%v) = %v, want %v", testSliceInt, output, expected)
@@ -183,7 +183,7 @@ func TestDividedBy(t *testing.T) {
 }
 
 func TestOnes(t *testing.T) {
-	expected := []int{1, 1, 1, 1, 1, 1}
+	expected := []float64{1, 1, 1, 1, 1, 1}
 	output := Ones(6)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Ones(%d) = %v, want %v", 6, output, expected)
@@ -191,7 +191,7 @@ func TestOnes(t *testing.T) {
 }
 
 func TestZeros(t *testing.T) {
-	expected := []int{0, 0, 0, 0, 0, 0}
+	expected := []float64{0, 0, 0, 0, 0, 0}
 	output := Zeros(6)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Zeros(%d) = %v, want %v", 6, output, expected)
@@ -199,7 +199,7 @@ func TestZeros(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	expected := []int{1, 2, 2, 3, 4, 5, 3}
+	expected := []float64{1, 2, 2, 3, 4, 5, 3}
 	output := Insert(testSliceInt, 1, 2)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Insert(%v,%d,%d) = %v, want %v", testSliceInt, 1, 2, output, expected)
@@ -207,7 +207,7 @@ func TestInsert(t *testing.T) {
 }
 
 func TestDelete(t *testing.T) {
-	expected := []int{1, 3, 4, 5, 3}
+	expected := []float64{1, 3, 4, 5, 3}
 	output := Delete(testSliceInt, 1)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Delete(%v,%d) = %v, want %v", testSliceInt, 1, output, expected)
