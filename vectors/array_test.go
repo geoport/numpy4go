@@ -81,7 +81,7 @@ func TestZeros(t *testing.T) {
 
 func TestInsert(t *testing.T) {
 	expected := []float64{1, 2, 2, 3, 4, 5, 3}
-	output, _ := Insert(ConvertFloat(testSliceInt), 1, 2)
+	output := Insert(ConvertFloat(testSliceInt), 1, 2)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Insert(%v,%d,%d) = %v, want %v", ConvertFloat(testSliceInt), 1, 2, output, expected)
 	}
@@ -89,7 +89,7 @@ func TestInsert(t *testing.T) {
 
 func TestDelete(t *testing.T) {
 	expected := []float64{1, 3, 4, 5, 3}
-	output, _ := Delete(ConvertFloat(testSliceInt), 1)
+	output := Delete(ConvertFloat(testSliceInt), 1)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Delete(%v,%d) = %v, want %v", ConvertFloat(testSliceInt), 1, output, expected)
 	}

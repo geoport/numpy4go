@@ -1,7 +1,6 @@
 package vectors
 
 import (
-	"errors"
 	"math"
 )
 
@@ -139,14 +138,12 @@ func Abs(array []float64) []float64 {
 }
 
 // SumWith sums elements of two slices with each other
-func SumWith[T Float](array1 []float64, factor T) ([]float64, error) {
+func SumWith[T Float](array1 []float64, factor T) []float64 {
 	var array []float64
-	var err error
 	if IsVector(factor) {
 		array2 := AsSlice(factor)
 		if len(array1) != len(array2) {
-			err = errors.New("arrays must be of the same length")
-			return array, err
+			panic("arrays must be of the same length")
 		}
 		for i := range array1 {
 			array = append(array, array1[i]+array2[i])
@@ -156,21 +153,19 @@ func SumWith[T Float](array1 []float64, factor T) ([]float64, error) {
 			array = append(array, array1[i]+asFloat64(factor))
 		}
 	}
-	return array, err
+	return array
 }
 
 // DividedBy divides elements of two slices with each other
-func DividedBy(array1 []float64, array2 []float64) ([]float64, error) {
+func DividedBy(array1 []float64, array2 []float64) []float64 {
 	var array []float64
-	var err error
 	if len(array1) != len(array2) {
-		err = errors.New("arrays must be of the same length")
-		return array, err
+		panic("arrays must be of the same length")
 	}
 	for i := range array1 {
 		array = append(array, array1[i]/array2[i])
 	}
-	return array, err
+	return array
 }
 
 // Geomspace returns a slice of numbers spaced evenly on a geometric progression
@@ -185,17 +180,15 @@ func Geomspace(start float64, end float64, length float64) []float64 {
 }
 
 // Dot returns the dot product of two slices
-func Dot(array1 []float64, array2 []float64) (float64, error) {
-	var err error
+func Dot(array1 []float64, array2 []float64) float64 {
 	if len(array1) != len(array2) {
-		err = errors.New("arrays must be of the same length")
-		return 0, err
+		panic("arrays must be of the same length")
 	}
 	var sum float64
 	for i := range array1 {
 		sum += array1[i] * array2[i]
 	}
-	return sum, err
+	return sum
 }
 
 // Angle returns the angle of the complex argument
@@ -293,14 +286,12 @@ func RealIfClose(array []complex128) any {
 }
 
 // FloorDivide returns the floor of the quotient of two arrays
-func FloorDivide[T Float](numerator []float64, denominator T) ([]float64, error) {
+func FloorDivide[T Float](numerator []float64, denominator T) []float64 {
 	var result []float64
-	var err error
 	if IsVector(denominator) {
 		denominator := AsSlice(denominator)
 		if len(numerator) != len(denominator) {
-			err = errors.New("numerator and denominator must have the same length")
-			return result, err
+			panic("numerator and denominator must have the same length")
 		}
 		for i := range numerator {
 			result = append(result, math.Floor(numerator[i]/denominator[i]))
@@ -310,7 +301,7 @@ func FloorDivide[T Float](numerator []float64, denominator T) ([]float64, error)
 			result = append(result, math.Floor(numerator[i]/asFloat64(denominator)))
 		}
 	}
-	return result, err
+	return result
 }
 
 // Diff returns the n-th differences of the given array.
@@ -336,40 +327,30 @@ func IsFinite(array []float64) []bool {
 }
 
 // Matmul returns the matrix product of two arrays
-func Matmul(a, b [][]float64) ([][]float64, error) {
+func Matmul(a, b [][]float64) [][]float64 {
 	var result [][]float64
-	var err error
 	transposeB := Transpose(b)
 	if !CheckConsistency(a) || !CheckConsistency(transposeB) {
-		err = errors.New("all rows or columns must have the same length")
-		return result, err
+		panic("all rows or columns must have the same length")
 	}
 	if len(a[0]) != len(Transpose(b)[0]) {
-		err = errors.New("")
-		return result, err
+		panic("These matrixes can't be multiplied")
 	}
 	for _, row := range a {
 		var newRow []float64
 		for _, col := range transposeB {
-			mult, multErr := Dot(row, col)
-			if err != nil {
-				return result, multErr
-			} else {
-				newRow = append(newRow, mult)
-			}
+			newRow = append(newRow, Dot(row, col))
 		}
 		result = append(result, newRow)
 	}
-	return result, err
+	return result
 }
 
 // Interp returns an array of linearly interpolated values.
-func Interp(x, xp, fp []float64) ([]float64, error) {
+func Interp(x, xp, fp []float64) []float64 {
 	var result []float64
-	var err error
 	if len(xp) != len(fp) {
-		err = errors.New("xp and fp must have the same length")
-		return result, err
+		panic("xp and fp must have the same length")
 	}
 	for _, xi := range x {
 		if xi < xp[0] {
@@ -384,30 +365,26 @@ func Interp(x, xp, fp []float64) ([]float64, error) {
 			}
 		}
 	}
-	return result, err
+	return result
 }
 
 // Inverse returns the inverse of a 2X2 matrix
-func Inverse(array [][]float64) ([][]float64, error) {
-	var err error
+func Inverse(array [][]float64) [][]float64 {
 	if len(array[0]) != 2 || len(array) != 2 {
-		err = errors.New("array must be a 2X2 matrix")
-		return [][]float64{}, err
+		panic("array must be a 2X2 matrix")
 	}
 	coef := 1 / (array[0][0]*array[1][1] - array[0][1]*array[1][0])
 	result := [][]float64{{array[1][1] * coef, -array[0][1] * coef}, {-array[1][0] * coef, array[0][0] * coef}}
-	return result, err
+	return result
 }
 
 // Polyfit returns the coefficients of a polynomial of degree 1 that fits the data
-func Polyfit(x, y []float64) (float64, float64, error) {
+func Polyfit(x, y []float64) (float64, float64) {
 	// y = ax +b
-	var err error
 	var a float64
 	var b float64
 	if len(x) != len(y) {
-		err = errors.New("x and y must have the same length")
-		return a, b, err
+		panic("x and y must have the same length")
 	}
 	sumX := Sum(x)
 	sumY := Sum(y)
@@ -417,22 +394,19 @@ func Polyfit(x, y []float64) (float64, float64, error) {
 
 	A := [][]float64{{sumX, float64(len(x))}, {sumX2, sumX}}
 	B := [][]float64{{sumY}, {sumXY}}
-	invA, _ := Inverse(A)
-	coeff, _ := Matmul(invA, B)
+	coeff := Matmul(Inverse(A), B)
 	a = coeff[0][0]
 	b = coeff[1][0]
-	return a, b, err
+	return a, b
 }
 
 // Mod returns the element-wise remainder of division
-func Mod[T Float](x []float64, y T) ([]float64, error) {
+func Mod[T Float](x []float64, y T) []float64 {
 	var result []float64
-	var err error
 	if IsVector(y) {
 		y := AsSlice(y)
 		if len(x) != len(y) {
-			err = errors.New("x and y must have the same length")
-			return result, err
+			panic("x and y must have the same length")
 		}
 		for i := range x {
 			result = append(result, math.Mod(x[i], y[i]))
@@ -443,7 +417,7 @@ func Mod[T Float](x []float64, y T) ([]float64, error) {
 		}
 	}
 
-	return result, err
+	return result
 }
 
 // Unwrap This unwraps a signal p by changing elements which have an absolute difference from their predecessor of
@@ -455,21 +429,20 @@ func Unwrap(array []float64) []float64 {
 	period := 2 * math.Pi
 	intervalHigh := period / 2
 	intervalLow := -period / 2
-	s, _ := SumWith(dd, -intervalLow)
-	ddmod, _ := Mod(s, period)
-	ddmod, _ = SumWith(ddmod, intervalLow)
+	ddmod := Mod(SumWith(dd, -intervalLow), period)
+	ddmod = SumWith(ddmod, intervalLow)
 	for i, d := range ddmod {
 		if d == intervalLow && dd[i] > 0 {
 			ddmod[i] = intervalHigh
 		}
 	}
-	phCorrect, _ := SumWith(ddmod, MultiplyBy(dd, -1))
+	phCorrect := SumWith(ddmod, MultiplyBy(dd, -1))
 	for i := range phCorrect {
 		if Abs(dd)[i] < discont {
 			ddmod[i] = 0
 		}
 	}
-	summed, _ := SumWith(array[1:], Cumsum(phCorrect))
+	summed := SumWith(array[1:], Cumsum(phCorrect))
 	result = append(result, summed...)
 	return result
 }

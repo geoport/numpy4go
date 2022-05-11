@@ -1,7 +1,6 @@
 package vectors
 
 import (
-	"errors"
 	"reflect"
 )
 
@@ -134,12 +133,10 @@ func Ones(length float64) []float64 {
 }
 
 // Insert inserts an element into a slice at a given index
-func Insert(array []float64, index int, value float64) ([]float64, error) {
+func Insert(array []float64, index int, value float64) []float64 {
 	var newArray []float64
-	var err error
 	if index < 0 || index > len(array)-1 {
-		err = errors.New("index is out of range")
-		return newArray, err
+		panic("index is out of range")
 	}
 
 	for i := 0; i < index; i++ {
@@ -149,16 +146,14 @@ func Insert(array []float64, index int, value float64) ([]float64, error) {
 	for i := index; i < len(array); i++ {
 		newArray = append(newArray, array[i])
 	}
-	return newArray, err
+	return newArray
 }
 
 // Delete deletes an element from a slice at a given index
-func Delete(array []float64, index int) ([]float64, error) {
+func Delete(array []float64, index int) []float64 {
 	var newArray []float64
-	var err error
 	if index < 0 || index > len(array)-1 {
-		err = errors.New("index is out of range")
-		return newArray, err
+		panic("index is out of range")
 	}
 
 	for i := 0; i < index; i++ {
@@ -167,7 +162,7 @@ func Delete(array []float64, index int) ([]float64, error) {
 	for i := index + 1; i < len(array); i++ {
 		newArray = append(newArray, array[i])
 	}
-	return newArray, err
+	return newArray
 }
 
 // Any returns true if any element of a slice satisfies a condition

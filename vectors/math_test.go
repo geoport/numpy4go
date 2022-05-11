@@ -92,7 +92,7 @@ func TestAbs(t *testing.T) {
 
 func TestSumWith(t *testing.T) {
 	expected := []float64{2.2, 2.4, 2.6, 2.8, 3, 2.2}
-	output, _ := SumWith(testSliceFloat, testSliceFloat)
+	output := SumWith(testSliceFloat, testSliceFloat)
 
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("SumWith(%v,%v) = %v, want %v", testSliceFloat, testSliceFloat, output, expected)
@@ -101,7 +101,7 @@ func TestSumWith(t *testing.T) {
 
 func TestDividedBy(t *testing.T) {
 	expected := []float64{1, 1, 1, 1, 1, 1}
-	output, _ := DividedBy(testSliceFloat, testSliceFloat)
+	output := DividedBy(testSliceFloat, testSliceFloat)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("DividedBy(%v,%v) = %v, want %v", testSliceFloat, testSliceFloat, output, expected)
 	}
@@ -123,7 +123,7 @@ func TestGeomspace(t *testing.T) {
 
 func TestDot(t *testing.T) {
 	expected := 9.76
-	output, _ := Dot(testSliceFloat, testSliceFloat)
+	output := Dot(testSliceFloat, testSliceFloat)
 	if math.Round(expected) != math.Round(output) {
 		t.Errorf("Dot(%v,%v) = %v, want %v", testSliceFloat, testSliceFloat, output, expected)
 	}
@@ -196,7 +196,7 @@ func TestRealIfClose(t *testing.T) {
 func TestFloorDivide(t *testing.T) {
 	expected := []float64{1, 1, 1, 0, 0, 0}
 	testDenominator := []float64{1, 1.2, 1.3, 2.9, 3.1, 4.4}
-	output, _ := FloorDivide(testSliceFloat, testDenominator)
+	output := FloorDivide(testSliceFloat, testDenominator)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Got %v, want %v", output, expected)
 	}
@@ -231,7 +231,7 @@ func TestMatmul(t *testing.T) {
 		{4, 1},
 		{2, 2},
 	}
-	output, _ := Matmul(array1, array2)
+	output := Matmul(array1, array2)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Got %v, want %v", output, expected)
 	}
@@ -242,7 +242,7 @@ func TestInterp(t *testing.T) {
 	fp := []float64{3, 2, 0}
 	x := []float64{0, 1, 1.5, 2.72, 3.14}
 	expected := []float64{3, 3, 2.5, 0.56, 0}
-	output, _ := Interp(x, xp, fp)
+	output := Interp(x, xp, fp)
 	if reflect.DeepEqual(expected, Round(output, 2)) != true {
 		t.Errorf("Got %v, want %v", output, expected)
 	}
@@ -254,7 +254,7 @@ func TestInverse(t *testing.T) {
 		{1, 0},
 		{0, 0.5},
 	}
-	output, _ := Inverse(testMatrix)
+	output := Inverse(testMatrix)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Got %v, want %v", output, expected)
 	}
@@ -264,7 +264,7 @@ func TestPolyfit(t *testing.T) {
 	expected := []float64{0.64, 0.55}
 	x := []float64{1, 3, 4, 6, 8, 9, 11, 14}
 	y := []float64{1, 2, 4, 4, 5, 7, 8, 9}
-	a, b, _ := Polyfit(x, y)
+	a, b := Polyfit(x, y)
 	output := []float64{a, b}
 	if reflect.DeepEqual(expected, Round(output, 2)) != true {
 		t.Errorf("Got %v, want %v", output, expected)
@@ -272,7 +272,7 @@ func TestPolyfit(t *testing.T) {
 }
 
 func TestMod(t *testing.T) {
-	output, _ := Mod(testSliceFloat, 0.5)
+	output := Mod(testSliceFloat, 0.5)
 	expected := []float64{0.1, 0.2, 0.3, 0.4, 0., 0.1}
 	if reflect.DeepEqual(expected, Round(output, 2)) != true {
 		t.Errorf("Got %v, want %v", output, expected)
