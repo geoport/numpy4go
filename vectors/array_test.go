@@ -72,8 +72,8 @@ func TestOnes(t *testing.T) {
 }
 
 func TestZeros(t *testing.T) {
-	expected := []float64{0, 0, 0, 0, 0, 0}
-	output := Zeros(6)
+	expected := [][]float64{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}
+	output := Zeros(3, 3)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Zeros(%d) = %v, want %v", 6, output, expected)
 	}
