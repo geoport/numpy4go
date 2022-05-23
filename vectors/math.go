@@ -154,6 +154,16 @@ func Abs(array []float64) []float64 {
 	return absArray
 }
 
+// Abs returns the absolute value of a slice of numbers
+func Abs2D(array [][]float64) [][]float64 {
+	var absArray [][]float64
+	for i := range array {
+		absArray = append(absArray, Abs(array[i]))
+	}
+
+	return absArray
+}
+
 // SumWith sums elements of two slices with each other
 func SumWith[T Float](array1 []float64, factor T) []float64 {
 	var array []float64

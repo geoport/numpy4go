@@ -90,6 +90,16 @@ func TestAbs(t *testing.T) {
 	}
 }
 
+func TestAbs2D(t *testing.T) {
+	testSlice := [][]float64{testSliceFloat, testSliceFloat}
+	expected := [][]float64{testSliceFloat, testSliceFloat}
+
+	output := Abs2D(testSlice)
+	if reflect.DeepEqual(expected, output) != true {
+		t.Errorf("Abs(%v) = %v, want %v", testSlice, output, expected)
+	}
+}
+
 func TestSumWith(t *testing.T) {
 	expected := []float64{2.2, 2.4, 2.6, 2.8, 3, 2.2}
 	output := SumWith(testSliceFloat, testSliceFloat)
