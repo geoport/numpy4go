@@ -104,6 +104,23 @@ func Max(array []float64) (float64, int) {
 	return max, index
 }
 
+// Max returns the maximum of rows or columns of a matrix
+func Max2D(array [][]float64, axis int) []float64 {
+	var max []float64
+	if axis == 0 {
+		for i := range array {
+			maxVal, _ := Max(array[i])
+			max = append(max, maxVal)
+		}
+	} else {
+		for i := range array[0] {
+			maxVal, _ := Max(GetColumn(array, i))
+			max = append(max, maxVal)
+		}
+	}
+	return max
+}
+
 // Min returns the maximum value and its index of a slice of numbers
 func Min(array []float64) (float64, int) {
 	min := array[0]

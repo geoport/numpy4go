@@ -260,3 +260,12 @@ func TestMeshgrid(t *testing.T) {
 		t.Errorf("Got %v, want %v", yGrid, expectedY)
 	}
 }
+
+func TestGetColumn(t *testing.T) {
+	testInput := [][]float64{testSliceFloat, testSliceFloat}
+	expected := []float64{1.1, 1.1}
+	output := GetColumn(testInput, 0)
+	if reflect.DeepEqual(expected, output) != true {
+		t.Errorf("Got %v, want %v", output, expected)
+	}
+}

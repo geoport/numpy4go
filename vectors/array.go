@@ -326,3 +326,12 @@ func Meshgrid(x, y []float64) ([][]float64, [][]float64) {
 	}
 	return xGrid, Transpose(yGrid)
 }
+
+//GetColumn returns a column of a 2-D array
+func GetColumn(array [][]float64, index int) []float64 {
+	var result []float64
+	for _, row := range array {
+		result = append(result, row[index])
+	}
+	return result
+}

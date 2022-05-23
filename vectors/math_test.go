@@ -295,3 +295,12 @@ func TestNorm(t *testing.T) {
 		t.Errorf("Got %v, want %v", output, expected)
 	}
 }
+
+func TestMax2D(t *testing.T) {
+	testInput := [][]float64{testSliceFloat, testSliceFloat}
+	expected := testSliceFloat
+	output := Max2D(testInput, 1)
+	if reflect.DeepEqual(expected, output) != true {
+		t.Errorf("Got %v, want %v", output, expected)
+	}
+}
