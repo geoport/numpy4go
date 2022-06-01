@@ -118,7 +118,7 @@ func Where(array []float64, f func(float642 float64) bool) ([]int, []float64) {
 func Zeros(row int, col int) [][]float64 {
 	var array [][]float64
 	for r := 0; r < row; r++ {
-		row_ := []float64{}
+		var row_ []float64
 		for c := 0; c < col; c++ {
 			row_ = append(row_, float64(0))
 		}

@@ -7,6 +7,7 @@ import (
 )
 
 var testSliceFloat = []float64{1.1, 1.2, 1.3, 1.4, 1.5, 1.1}
+var testSlice2D = [][]float64{{1.1, 1.2, 1.3, 1.4, 1.5, 1.1}, {1.1, 1.2, 1.3, 1.4, 1.5, 1.1}}
 var testSliceInt = []int{1, 2, 3, 4, 5, 3}
 var testSliceAngle = []float64{math.Pi, math.Pi / 2}
 var testSliceComplex = []complex128{1, 1i, 1 + 1i}

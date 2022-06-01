@@ -307,10 +307,17 @@ func TestNorm(t *testing.T) {
 }
 
 func TestMax2D(t *testing.T) {
-	testInput := [][]float64{testSliceFloat, testSliceFloat}
 	expected := testSliceFloat
-	output := Max2D(testInput, 1)
+	output := Max2D(testSlice2D, 1)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Got %v, want %v", output, expected)
+	}
+}
+
+func TestRound2D(t *testing.T) {
+	expected := testSlice2D
+	output := Round2D(testSlice2D, 1)
+	if reflect.DeepEqual(expected, output) != true {
+		t.Errorf("Round(%v) = %v, want %v", testSliceFloat, output, expected)
 	}
 }

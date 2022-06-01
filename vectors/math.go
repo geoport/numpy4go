@@ -90,6 +90,17 @@ func Round(array []float64, decimals int) []float64 {
 	return roundedArray
 }
 
+// Round2D rounds a 2D array of numbers to a given decimal
+func Round2D(array [][]float64, decimals int) [][]float64 {
+	var roundedArray [][]float64
+	for _, row := range array {
+		roundedRow := Round(row, decimals)
+		roundedArray = append(roundedArray, roundedRow)
+	}
+
+	return roundedArray
+}
+
 // Max returns the maximum value and its index of a slice of numbers
 func Max(array []float64) (float64, int) {
 	max := array[0]
@@ -104,7 +115,7 @@ func Max(array []float64) (float64, int) {
 	return max, index
 }
 
-// Max returns the maximum of rows or columns of a matrix
+// Max2D returns the maximum of rows or columns of a matrix
 func Max2D(array [][]float64, axis int) []float64 {
 	var max []float64
 	if axis == 0 {
@@ -154,7 +165,7 @@ func Abs(array []float64) []float64 {
 	return absArray
 }
 
-// Abs returns the absolute value of a slice of numbers
+// Abs2D returns the absolute value of a slice of numbers
 func Abs2D(array [][]float64) [][]float64 {
 	var absArray [][]float64
 	for i := range array {
