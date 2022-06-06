@@ -128,9 +128,9 @@ func Zeros(row int, col int) [][]float64 {
 }
 
 // Ones returns a slice of ones of a given length
-func Ones(length float64) []float64 {
+func Ones(length int) []float64 {
 	var array []float64
-	for i := 0; i < int(length); i++ {
+	for i := 0; i < length; i++ {
 		array = append(array, float64(1))
 	}
 	return array

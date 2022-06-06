@@ -59,6 +59,7 @@ func Loadtxt(filepath string, start int, unpack bool) [][]float64 {
 				}
 			}
 		}
+		i++
 	}
 
 	return result
