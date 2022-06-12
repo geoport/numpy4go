@@ -83,7 +83,7 @@ func Cumsum(array []float64) []float64 {
 func Round(array []float64, decimals int) []float64 {
 	var roundedArray []float64
 	for i := range array {
-		roundedNum := math.Round(array[i]*math.Pow(10, float64(decimals))) / math.Pow(10, float64(decimals))
+		roundedNum := RoundFloat(array[i], decimals)
 		roundedArray = append(roundedArray, roundedNum)
 	}
 
@@ -99,6 +99,10 @@ func Round2D(array [][]float64, decimals int) [][]float64 {
 	}
 
 	return roundedArray
+}
+
+func RoundFloat(num float64, decimals int) float64 {
+	return math.Round(num*math.Pow(10, float64(decimals))) / math.Pow(10, float64(decimals))
 }
 
 // Max returns the maximum value and its index of a slice of numbers

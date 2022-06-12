@@ -321,3 +321,11 @@ func TestRound2D(t *testing.T) {
 		t.Errorf("Round(%v) = %v, want %v", testSliceFloat, output, expected)
 	}
 }
+
+func TestRoundFloat(t *testing.T) {
+	expected := 3.123
+	output := RoundFloat(3.12345, 3)
+	if reflect.DeepEqual(expected, output) != true {
+		t.Errorf("Round(%v) = %v, want %v", 3.12345, output, expected)
+	}
+}
