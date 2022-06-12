@@ -397,7 +397,9 @@ func Interp(x, xp, fp []float64) []float64 {
 			result = append(result, fp[len(fp)-1])
 		} else {
 			for i := 0; i < len(xp)-1; i++ {
-				if xi >= xp[i] && xi <= xp[i+1] {
+				if xp[i] == xp[i+1] {
+					result = append(result, fp[i])
+				} else if xi >= xp[i] && xi <= xp[i+1] {
 					result = append(result, fp[i]+(fp[i+1]-fp[i])/(xp[i+1]-xp[i])*(xi-xp[i]))
 				}
 			}
