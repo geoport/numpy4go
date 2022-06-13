@@ -54,7 +54,7 @@ func ConvertFloat(slice []int) []float64 {
 }
 
 // Contains checks if a value is in a slice
-func Contains(slice []float64, val float64) bool {
+func Contains[T float64 | string | int](slice []T, val T) bool {
 	for _, elem := range slice {
 		if elem == val {
 			return true
