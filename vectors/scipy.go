@@ -122,6 +122,7 @@ func Cheby1(Wn []float64, filterOrder int, filterType string) ([]float64, []floa
 
 }
 
+//Bessel filtering
 func Bessel(Wn []float64, filterOrder int, filterType string) ([]float64, []float64) {
 	type requestData struct {
 		Wn          []float64 `json:"Wn"`
