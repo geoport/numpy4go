@@ -270,3 +270,12 @@ func TestGetColumn(t *testing.T) {
 		t.Errorf("Got %v, want %v", output, expected)
 	}
 }
+
+func TestConvertInt(t *testing.T) {
+	testInput := []float64{1, 2, 3}
+	expected := []int{1, 2, 3}
+	output := ConvertInt(testInput)
+	if reflect.DeepEqual(expected, output) != true {
+		t.Errorf("Got %v, want %v", output, expected)
+	}
+}

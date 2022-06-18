@@ -44,11 +44,20 @@ func asFloat64[T Float](obj T) float64 {
 	}
 }
 
-// ConvertFloat converts a Number type slice to a float64 slice
+// ConvertFloat converts a int type slice to a float64 slice
 func ConvertFloat(slice []int) []float64 {
 	var result []float64
 	for _, v := range slice {
 		result = append(result, float64(v))
+	}
+	return result
+}
+
+// ConvertInt converts a float64 type slice to a int slice
+func ConvertInt(slice []float64) []int {
+	var result []int
+	for _, v := range slice {
+		result = append(result, int(v))
 	}
 	return result
 }
