@@ -344,3 +344,12 @@ func GetColumn(array [][]float64, index int) []float64 {
 	}
 	return result
 }
+
+// Repat returns an array with the elements repeated the number of times given by the input value.
+func Repeat(elem float64, reps int) []float64 {
+	var result []float64
+	for i := 0; i < reps; i++ {
+		result = append(result, elem)
+	}
+	return result
+}

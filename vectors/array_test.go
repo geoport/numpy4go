@@ -279,3 +279,11 @@ func TestConvertInt(t *testing.T) {
 		t.Errorf("Got %v, want %v", output, expected)
 	}
 }
+
+func TestRepeat(t *testing.T) {
+	expected := []float64{2, 2, 2}
+	output := Repeat(2, 3)
+	if reflect.DeepEqual(expected, output) != true {
+		t.Errorf("Got %v, want %v", output, expected)
+	}
+}
