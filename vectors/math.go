@@ -122,7 +122,7 @@ func Max(array []float64) (float64, int) {
 // Max2D returns the maximum of rows or columns of a matrix
 func Max2D(array [][]float64, axis int) []float64 {
 	var max []float64
-	if axis == 0 {
+	if axis == 1 {
 		for i := range array {
 			maxVal, _ := Max(array[i])
 			max = append(max, maxVal)

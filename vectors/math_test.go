@@ -308,7 +308,7 @@ func TestNorm(t *testing.T) {
 
 func TestMax2D(t *testing.T) {
 	expected := testSliceFloat
-	output := Max2D(testSlice2D, 1)
+	output := Max2D(testSlice2D, 0)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Got %v, want %v", output, expected)
 	}
