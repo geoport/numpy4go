@@ -25,23 +25,15 @@ func sendRequest(app string, body any) map[string]interface{} {
 }
 
 // Cumtrapz cumulatively integrates f(x) using the composite trapezoidal rule.
-func Cumtrapz(x, f []float64) []float64 {
+func Cumtrapz(f []float64, dx float64, initial float64) []float64 {
 
-	switch {
-	case len(x) != len(f):
-		panic("integrate: slice length mismatch")
-	case len(x) < 2:
-		panic("integrate: input data too small")
-	case !sort.Float64sAreSorted(x):
-		panic("integrate: input must be sorted")
-	}
 	integral := []float64{0}
-	for i := 0; i < len(x)-1; i++ {
-		n := 0.5 * (x[i+1] - x[i]) * (f[i+1] + f[i])
+	for i := 0; i < len(f)-1; i++ {
+		n := 0.5 * dx * (f[i+1] + f[i])
 		integral = append(integral, integral[i]+n)
 	}
-
-	return integral[1:]
+	integral[0] = initial
+	return integral
 }
 
 func Interp1D(x, y, xi []float64) []float64 {

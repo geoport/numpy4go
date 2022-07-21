@@ -6,10 +6,10 @@ import (
 )
 
 func TestCumtrapz(t *testing.T) {
-	expected := []float64{1.5, 4, 7.5, 12}
-	x := []float64{1, 2, 3, 4, 5}
+	expected := []float64{0, 0.75, 2, 3.75, 6}
+	dx := 0.5
 	f := []float64{1, 2, 3, 4, 5}
-	output := Cumtrapz(x, f)
+	output := Cumtrapz(f, dx, 0)
 	if reflect.DeepEqual(expected, output) != true {
 		t.Errorf("Got %v, want %v", output, expected)
 	}
