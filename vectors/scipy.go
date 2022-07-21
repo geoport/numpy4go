@@ -24,7 +24,7 @@ func sendRequest(app string, body any) map[string]interface{} {
 	}
 }
 
-// Cumtrapz cumulatively integrates f(x) using the composite trapezoidal rule.
+// Cumtrapz cumulatively integrates f using the composite trapezoidal rule.
 func Cumtrapz(f []float64, dx float64, initial float64) []float64 {
 
 	integral := []float64{0}
