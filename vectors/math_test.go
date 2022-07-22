@@ -329,3 +329,11 @@ func TestRoundFloat(t *testing.T) {
 		t.Errorf("Round(%v) = %v, want %v", 3.12345, output, expected)
 	}
 }
+
+func TestSubstract(t *testing.T) {
+	expected := Zeros(1, len(testSliceFloat))[0]
+	output := Substract(testSliceFloat, testSliceFloat)
+	if reflect.DeepEqual(expected, output) != true {
+		t.Errorf("Got %v, want %v", output, expected)
+	}
+}

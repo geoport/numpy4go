@@ -495,3 +495,14 @@ func Unwrap(array []float64) []float64 {
 func Norm(x []float64) float64 {
 	return math.Sqrt(Sum(Pow(x, 2)))
 }
+
+func Substract(x, y []float64) []float64 {
+	var result []float64
+	if len(x) != len(y) {
+		panic("x and y must have the same length")
+	}
+	for i := range x {
+		result = append(result, x[i]-y[i])
+	}
+	return result
+}
