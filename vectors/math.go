@@ -106,17 +106,23 @@ func RoundFloat(num float64, decimals int) float64 {
 }
 
 // Max returns the maximum value and its index of a slice of numbers
-func Max(array []float64) (float64, int) {
+func Max(array []float64) float64 {
 	max := array[0]
-	index := 0
-	for i, value := range array {
+	for _, value := range array {
 		if value > max {
 			max = value
-			index = i
 		}
 	}
 
-	return max, index
+	return max
+}
+
+// ArgMax returns the index of maximum value in a slice
+func ArgMax(array []float64) int {
+	max := Max(array)
+	index, _ := Where(array, func(x float64) bool { return x == max })
+
+	return index[0]
 }
 
 // Max2D returns the maximum of rows or columns of a matrix
@@ -124,31 +130,35 @@ func Max2D(array [][]float64, axis int) []float64 {
 	var max []float64
 	if axis == 1 {
 		for i := range array {
-			maxVal, _ := Max(array[i])
-			max = append(max, maxVal)
+			max = append(max, Max(array[i]))
 		}
 	} else {
 		for i := range array[0] {
-			maxVal, _ := Max(GetColumn(array, i))
-			max = append(max, maxVal)
+			max = append(max, Max(GetColumn(array, i)))
 		}
 	}
 	return max
 }
 
 // Min returns the maximum value and its index of a slice of numbers
-func Min(array []float64) (float64, int) {
+func Min(array []float64) float64 {
 	min := array[0]
-	index := 0
 
-	for i, value := range array {
+	for _, value := range array {
 		if value < min {
 			min = value
-			index = i
 		}
 	}
 
-	return min, index
+	return min
+}
+
+// ArgMin returns the index of maximum value in a slice
+func ArgMin(array []float64) int {
+	min := Min(array)
+	index, _ := Where(array, func(x float64) bool { return x == min })
+
+	return index[0]
 }
 
 // Mean returns the mean of a slice of numbers

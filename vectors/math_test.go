@@ -56,22 +56,32 @@ func TestRound(t *testing.T) {
 
 func TestMax(t *testing.T) {
 	expectedMax := 5.0
-	expectedArgMax := 4
-	outputMax, argMax := Max(ConvertFloat(testSliceInt))
-	if outputMax != expectedMax && argMax != expectedArgMax {
+	outputMax := Max(ConvertFloat(testSliceInt))
+	if outputMax != expectedMax {
 		t.Errorf("Max(%v) = %v, want %v", ConvertFloat(testSliceInt), outputMax, expectedMax)
 	}
 }
-
+func TestArgMax(t *testing.T) {
+	expected := 4
+	output := ArgMax(testSliceFloat)
+	if output != expected {
+		t.Errorf("ArgMax(%v) = %v, want %v", testSliceFloat, output, expected)
+	}
+}
 func TestMin(t *testing.T) {
 	expectedMin := 1.1
-	expectedArgMin := 0
-	outputMin, argMin := Min(testSliceFloat)
-	if outputMin != expectedMin && argMin != expectedArgMin {
+	outputMin := Min(testSliceFloat)
+	if outputMin != expectedMin {
 		t.Errorf("Min(%v) = %v, want %v", testSliceFloat, outputMin, expectedMin)
 	}
 }
-
+func TestArgMin(t *testing.T) {
+	expected := 0
+	output := ArgMin(testSliceFloat)
+	if output != expected {
+		t.Errorf("ArgMin(%v) = %v, want %v", testSliceFloat, output, expected)
+	}
+}
 func TestMean(t *testing.T) {
 	expected := 3.0
 	output := Mean(ConvertFloat(testSliceInt))
