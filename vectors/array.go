@@ -353,3 +353,18 @@ func Repeat(elem float64, reps int) []float64 {
 	}
 	return result
 }
+
+// Clip returns an array with the elements clipped between the lower and upper bound.
+func Clip(array []float64, min, max float64) []float64 {
+	var result []float64
+	for _, elem := range array {
+		if elem < min {
+			result = append(result, min)
+		} else if elem > max {
+			result = append(result, max)
+		} else {
+			result = append(result, elem)
+		}
+	}
+	return result
+}

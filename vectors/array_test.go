@@ -287,3 +287,12 @@ func TestRepeat(t *testing.T) {
 		t.Errorf("Got %v, want %v", output, expected)
 	}
 }
+
+func TestClip(t *testing.T) {
+	testInput := []float64{1, 2, 3, 4, 5}
+	expected := []float64{2, 2, 3, 3, 3}
+	output := Clip(testInput, 2, 3)
+	if reflect.DeepEqual(expected, output) != true {
+		t.Errorf("Got %v, want %v", output, expected)
+	}
+}
